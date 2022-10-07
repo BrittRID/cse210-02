@@ -41,4 +41,4 @@ class card:
         self.value = random.randint(1,13)
         return self.value
 
-        #self.points = 50 if self.value == 5 else 100 if self.value == 1 else 0
+

@@ -21,16 +21,9 @@ class Director:
         """
         self.cards = []
         self.is_playing = True
-        # self.score = 0
-        # self.total_score = 0
+
         self.total_score = 300
 
-        # points = card.deal(self)
-        # print(points)
-
-        # for i in range(5):
-        #     card = cards()
-        #     self.cards.append(card)
 
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -40,8 +33,7 @@ class Director:
         """
         while self.is_playing:
             self.get_inputs()
-            # self.do_updates()
-            # self.do_outputs()
+
 
     def get_inputs(self):
         """Ask the user if they want to play again.
@@ -53,7 +45,15 @@ class Director:
 
         print(f"The card is: {first_card}")
 
-        is_hl = input("Higher or lower? [h/l] ")
+        valid = False
+        while valid == False:
+            is_hl = input("Higher or lower? [h/l] ")
+
+            is_hl = is_hl.lower()
+
+            if is_hl == "h" or is_hl == "l":
+                valid = True
+        
 
         second_card = card.deal(self)
 
@@ -62,8 +62,8 @@ class Director:
 
         if second_card >= first_card:
             if is_hl == "h":
-                self.total_score += 100
                 # get 100 points
+                self.total_score += 100
             else:
                 # lose 75 points
                 self.total_score -= 75
@@ -81,41 +81,16 @@ class Director:
         if self.total_score <= 0:
             self.is_playing = False
 
-        play_again = input("Play again? [y/n] ")
+        valid2 = False
+        while valid2 == False:
+            play_again = input("Play again? [y/n] ")
+
+            play_again = play_again.lower()
+
+            if play_again == "y" or play_again == "n":
+                valid2 = True
+
+        
 
         if play_again == "n":
             self.is_playing = False
-        #     quit()
-       
-    # def do_updates(self):
-    #     """Updates the player's score.
-
-    #     Args:
-    #         self (Director): An instance of Director.
-    #     """
-    #     if not self.is_playing:
-    #         return 
-
-        
-    #     card = self.cards()
-    #     card.deal()
-    #     self.score += card.points 
-    #     self.total_score += self.score
-
-    # def do_outputs(self):
-    #     """Displays the card and the score. Also asks the player if they want to play again. 
-
-    #     Args:
-    #         self (Director): An instance of Director.
-    #     """
-    #     if not self.is_playing:
-    #         return
-        
-    #     values = ""
-        
-    #     card = self.cards
-    #     values = f"{card.value} "
-
-    #     print(f"Your card was: {values}")
-    #     print(f"Your score is: {self.total_score}\n")
-    #     self.is_playing == (self.score > 0)
