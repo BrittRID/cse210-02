@@ -24,8 +24,8 @@ class card:
         Args:
             self (card): An instance of card.
         """
-        self.value = 0;
-        self.points = 300;
+        self.value = 0
+        self.points = 300
 
 # 3) Create the roll(self) method. Use the following method comment.
     def deal(self):
@@ -34,6 +34,11 @@ class card:
         Args:
             self (card): An instance of card.
         """
+          
+        #   The player earns 100 points if they guessed correctly.
+        #   The player loses 75 points if they guessed incorrectly.
+        
+        self.value = random.randint(1,13)
+        return self.value
 
-        self.value = random.randint(1,13);
-        self.points = 50 if self.value == 5 else 100 if self.value == 1 else 0
+        #self.points = 50 if self.value == 5 else 100 if self.value == 1 else 0
