@@ -30,4 +30,7 @@ root                    (project root folder)
 
 ## Authors
 ---
+* Romel Fraatz
+* Cynthia Rawlings
+* Brit Ridley
 * Anna Varner
