@@ -32,6 +32,7 @@ class Director:
         self.guessed_letters = []
         self.is_playing = True
 
+
     def start_game(self):
         """Starts the game by running the main game loop.
         
@@ -67,8 +68,66 @@ class Director:
                 print(f"The word was {self.word}")
 
             
-
-
     def print_word(self):
+        """Print out the word with underscores for unknown characters.
+
+        Args:
+            self (Director): An instance of Director.
+        """
+
+        display_word = ""
+
+        # For every letter in the word
+        for letter in self.word:
+            # Check to see if it was guessed
+            if letter in self.guessed_letters:
+                display_word += letter
+            else:
+                display_word += "_"
+        
+        print(display_word)
+                
+
     def check_won(self):
+        """Check if the player won the game.
+        
+        Args:
+            self (Director): An instance of Director.
+        """
+
+        display_word = ""
+
+        # For every letter in the word
+        for letter in self.word:
+            # Check to see if it was guessed
+            if letter in self.guessed_letters:
+                display_word += letter
+            else:
+                display_word += "_"
+
+        if display_word == self.word:
+            return True
+        else:
+            return False
+
+
     def check_loss(self):
+        """Check if the player lost the game.
+        
+        Args:
+            self (Director): An instance of Director.
+        """
+        wrong_guesses = 0
+        
+        # For every guessed letter
+        for guessed_letter in self.guessed_letters:
+            # Check to see if it was correct
+            if guessed_letter not in self.word:
+                wrong_guesses += 1
+
+
+        # If the number of wrong guessed letters is greater than 7 than the player loses
+        if wrong_guesses > 7:
+            return True
+        else:
+            return False
