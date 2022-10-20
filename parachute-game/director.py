@@ -52,6 +52,9 @@ class Director:
             parachute.parachute()
 
             # Get the player's input (guess)
+            # self.guessed_letters is sent in for input validation
+            # to make sure the player doesn't guess a letter they
+            # already guessed
             player_guess = guess.guess(self.guessed_letters)
             # Add the guessed letter to the guessed_letters list
             self.guessed_letters.append(player_guess)
