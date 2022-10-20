@@ -78,17 +78,17 @@ class Director:
             self (Director): An instance of Director.
         """
 
-        display_word = ""
+        self._display_word = ""
 
         # For every letter in the word
         for letter in self.word:
             # Check to see if it was guessed
             if letter in self.guessed_letters:
-                display_word += letter
+                self._display_word += letter
             else:
-                display_word += "_"
+                self._display_word += "_"
         
-        print(display_word)
+        print(self._display_word)
                 
 
     def check_won(self):
@@ -98,17 +98,17 @@ class Director:
             self (Director): An instance of Director.
         """
 
-        display_word = ""
+        self._display_word = ""
 
         # For every letter in the word
         for letter in self.word:
             # Check to see if it was guessed
             if letter in self.guessed_letters:
-                display_word += letter
+                self._display_word += letter
             else:
-                display_word += "_"
+                self._display_word += "_"
 
-        if display_word == self.word:
+        if self._display_word == self.word:
             return True
         else:
             return False
