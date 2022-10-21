@@ -46,46 +46,48 @@ class Director:
                 # Get the word from the get_word function in the get_word file
                 self.word = get_word.get_word()
 
-            # print out the current parachute
-            # print(Parachute.stages[self.stage_level])
-            print(Parachute.stages(self.stage_level))
-            print()
-            # Print out the word with blanks
-            self.print_word()
-            print()
+            if self.stage_level < 4:
 
-            # if self.check_loss() == True:
-            #     print("Sorry, you lost!")
-            #     # print(Parachute.stages(self.stage_level))
-            #     print(f"The word was {self.word}")
-            #     print()
-            #     self.is_playing = False
+                # print out the current parachute
+                print(Parachute.stages(self.stage_level))
+                print()
+                # Print out the word with blanks
+                self.print_word()
+                print()
 
-            # Get the player's input (guess)
-            # self.guessed_letters is sent in for input validation
-            # to make sure the player doesn't guess a letter they
-            # already guessed
-            player_guess = Jumper.user_inputs(self.guessed_letters)
-            # Add the guessed letter to the guessed_letters list
-            self.guessed_letters.append(player_guess)
-            print()
-            # Determine if the game is won
-            if self.check_won() == True:
-                print("You got it!")
+
+                # Get the player's input (guess)
+                # self.guessed_letters is sent in for input validation
+                # to make sure the player doesn't guess a letter they
+                # already guessed
+              
+                player_guess = Jumper.user_inputs(self.guessed_letters)
+             
+                # Add the guessed letter to the guessed_letters list
+                self.guessed_letters.append(player_guess)
                 print()
-                print(self.word)
-                self.is_playing = False
-            # Determine if the game is lost 
-            elif self.check_loss() == True:
-                print("Sorry, you lost!")
-                # print(Parachute.stages(self.stage_level))
-                print(f"The word was {self.word}")
-                print()
-                self.is_playing = False
+                # Determine if the game is won
+                if self.check_won() == True:
+                    print("You got it!")
+                    print()
+                    print(self.word)
+                    self.is_playing = False
+                # Determine if the game is lost 
+                elif self.check_loss() == True:
+                    print("Sorry, you lost!")
+                    print(f"The word was {self.word}")
+                    print()
+                    self.is_playing = False
+                else:
+                    if player_guess not in self.word:
+                        self.stage_level += 1
             else:
-                if player_guess not in self.word:
-                    self.stage_level += 1
-
+                if self.check_loss() == True:
+                    print("Sorry, you lost!")
+                    print(Parachute.stages(self.stage_level))
+                    print(f"The word was {self.word}")
+                    print()
+                    self.is_playing = False
             
     def print_word(self):
         """Print out the word with underscores for unknown characters.
@@ -136,17 +138,8 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        # wrong_guesses = 0
-        
-        # # For every guessed letter
-        # for guessed_letter in self.guessed_letters:
-        #     # Check to see if it was correct
-        #     if guessed_letter not in self.word:
-        #         wrong_guesses += 1
 
-        # print(self.stage_level)
-
-        # If the number of wrong guessed letters is greater than 7 than the player loses
+        # If the number of wrong guessed letters is greater than 3 than the player loses
         if self.stage_level > 3:
             return True
         else:

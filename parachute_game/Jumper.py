@@ -26,7 +26,7 @@ class Jumper:
             else:
                 print("Must be a letter")
 
-        print(f'The letter is: {letter}.')
+        # print(f'The letter is: {letter}.')
         return letter
 
 
