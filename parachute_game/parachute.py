@@ -1,7 +1,8 @@
 
 class Parachute:
 
-    def __init__(self):
+    # def __init__(self):
+    def stages(stage_level):
 
         stages = [
             """
@@ -63,4 +64,4 @@ class Parachute:
 
         # self._parachute = stages
         # return self._parachute
-        return stages
+        return stages[stage_level]

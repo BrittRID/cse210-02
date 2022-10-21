@@ -9,16 +9,22 @@
 from curses.ascii import isalpha
 
 class Jumper:
-    def user_inputs(self, guessed_letters):
+    def user_inputs(guessed_letters):
         valid = False
         while valid == False:
-            print('Enter a letter:')
-            letter = input()
+            # print('Enter a letter:')
+            letter = input("Enter a letter: ")
             letter = letter.lower()
-            if letter == letter.isalpha():
+            if letter.isalpha() == True:
                 if letter not in guessed_letters:
-                    if letter.len() == 1:
+                    if len(letter) == 1:
                         valid = True
+                    else:
+                        print("Enter only one letter")
+                else:
+                    print("You already guessed that letter.")
+            else:
+                print("Must be a letter")
 
         print(f'The letter is: {letter}.')
         return letter
