@@ -61,5 +61,6 @@ class Parachute:
             """,
         ]
 
-        self._parachute = stages
-        return self._parachute
+        # self._parachute = stages
+        # return self._parachute
+        return stages
