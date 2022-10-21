@@ -53,6 +53,14 @@ class Director:
             # Print out the word with blanks
             self.print_word()
             print()
+
+            # if self.check_loss() == True:
+            #     print("Sorry, you lost!")
+            #     # print(Parachute.stages(self.stage_level))
+            #     print(f"The word was {self.word}")
+            #     print()
+            #     self.is_playing = False
+
             # Get the player's input (guess)
             # self.guessed_letters is sent in for input validation
             # to make sure the player doesn't guess a letter they
@@ -70,9 +78,10 @@ class Director:
             # Determine if the game is lost 
             elif self.check_loss() == True:
                 print("Sorry, you lost!")
-                Parachute.stages[self.stage_level]
+                # print(Parachute.stages(self.stage_level))
                 print(f"The word was {self.word}")
                 print()
+                self.is_playing = False
             else:
                 if player_guess not in self.word:
                     self.stage_level += 1
@@ -135,6 +144,7 @@ class Director:
         #     if guessed_letter not in self.word:
         #         wrong_guesses += 1
 
+        # print(self.stage_level)
 
         # If the number of wrong guessed letters is greater than 7 than the player loses
         if self.stage_level > 3:
