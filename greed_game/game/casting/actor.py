@@ -31,6 +31,13 @@ class Actor:
             Color: The actor's text color.
         """
         return self._color
+    
+    def get_type(self, chartype):
+        """Gets the type.            
+        
+        Returns type, rock or gem
+        """
+        return self._chartype
 
     def get_font_size(self):
         """Gets the actor's font size.
@@ -83,6 +90,13 @@ class Actor:
             color (Color): The given color.
         """
         self._color = color
+
+    def set_chartype(self, chartype):
+        """Updates the type to the given one.            
+         Args:
+            chartype (chartype): The given chartype.
+        """
+        self._chartype = chartype
 
     def set_position(self, position):
         """Updates the position to the given one.

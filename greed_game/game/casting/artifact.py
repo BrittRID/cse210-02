@@ -28,5 +28,5 @@ class Artifact(Actor):
         Returns:
             int: point value.
         """
-        self.worth = worth
+        self._worth = worth
         
