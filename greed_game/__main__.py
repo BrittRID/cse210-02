@@ -86,9 +86,10 @@ def main():
         artifact.set_text(text)
         artifact.set_font_size(FONT_SIZE)
         artifact.set_color(color)
-        artifact.set_chartype(text)
         artifact.set_position(position)
         # artifact.set_message(message)
+        artifact.set_chartype(text)
+
         cast.add_actor("artifacts", artifact)
     
     # start the game

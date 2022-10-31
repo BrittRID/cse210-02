@@ -32,7 +32,7 @@ class Actor:
         """
         return self._color
     
-    def get_type(self, chartype):
+    def get_chartype(self, chartype):
         """Gets the type.            
         
         Returns type, rock or gem
