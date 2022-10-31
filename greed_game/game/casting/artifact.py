@@ -5,27 +5,28 @@ class Artifact(Actor):
     """
     An item of cultural or historical interest. 
     
-    The responsibility of an Artifact is to provide a message about itself.
+    The responsibility of an Artifact is to provide it's worth, a point value.
 
     Attributes:
-        _message (string): A short description about the artifact.
+        _worth (int): either -1 or 1
     """
     def __init__(self):
         super().__init__()
-        self._message = ""
-        
-    def get_message(self):
-        """Gets the artifact's message.
+        self.worth = 0
+
+    def get_worth(self):
+        """Gets the artifact's worth.
         
         Returns:
-            string: The message.
+            int: point value.
         """
-        return self._message
-    
-    def set_message(self, message):
-        """Updates the message to the given one.
+        return self._worth
+
+    def set_points(self, worth):
+        """Gets the artifact's worth in points.
         
-        Args:
-            message (string): The given message.
+        Returns:
+            int: point value.
         """
-        self._message = message
+        self.worth = worth
+        
