@@ -31,13 +31,36 @@ class Actor:
             Color: The actor's text color.
         """
         return self._color
-    
-    def get_chartype(self, chartype):
-        """Gets the type.            
+
+    def set_scoretype(self, scoretype):
         
-        Returns type, rock or gem
-        """
-        return self._chartype
+        self._scoretype = scoretype
+    
+    def get_scoretype(self):
+
+        return self._scoretype
+
+    def set_total_score(self, total_score):
+        
+        self._total_score = total_score
+    
+    def get_total_score(self):
+
+        return self._total_score
+
+    # def set_chartype(self, chartype):
+    #     """Updates the type to the given one.            
+    #      Args:
+    #         chartype (chartype): The given chartype.
+    #     """
+    #     self._chartype = chartype
+    
+    # def get_chartype(self, chartype):
+    #     """Gets the type.            
+        
+    #     Returns type, rock or gem
+    #     """
+    #     return self._chartype
 
     def get_font_size(self):
         """Gets the actor's font size.
@@ -83,6 +106,12 @@ class Actor:
         y = (self._position.get_y() + self._velocity.get_y()) % max_y
         self._position = Point(x, y)
 
+    def move_falling_objects(self, max_y):
+        x = self._position.get_x()
+        y = (self._position.get_y() + 5) % max_y
+        self._position = Point(x, y)
+        # print("falling")
+
     def set_color(self, color):
         """Updates the color to the given one.
         
@@ -90,13 +119,6 @@ class Actor:
             color (Color): The given color.
         """
         self._color = color
-
-    def set_chartype(self, chartype):
-        """Updates the type to the given one.            
-         Args:
-            chartype (chartype): The given chartype.
-        """
-        self._chartype = chartype
 
     def set_position(self, position):
         """Updates the position to the given one.

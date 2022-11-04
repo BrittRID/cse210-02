@@ -39,6 +39,8 @@ def main():
     banner.set_color(WHITE)
     banner.set_position(Point(CELL_SIZE, 0))
     cast.add_actor("banners", banner)
+
+    total_score = 0
     
     # create the robot
     x = int(MAX_X / 2)
@@ -51,6 +53,9 @@ def main():
     robot.set_color(WHITE)
     robot.set_position(position)
     cast.add_actor("robots", robot)
+
+    # Set the robot's points
+    robot.set_total_score(0)
     
     # create the artifacts
     # with open(DATA_PATH) as file:
@@ -66,8 +71,10 @@ def main():
 
         if char_type == 1:
             text = "*"
+            score = 1
         else:
             text = "0"
+            score = -1
 
         
         # message = messages[n]
@@ -88,7 +95,8 @@ def main():
         artifact.set_color(color)
         artifact.set_position(position)
         # artifact.set_message(message)
-        artifact.set_chartype(text)
+        # artifact.set_chartype(text)
+        artifact.set_scoretype(score)
 
         cast.add_actor("artifacts", artifact)
     

@@ -17,6 +17,8 @@ class Director:
         """
         self._keyboard_service = keyboard_service
         self._video_service = video_service
+        # self._total_score = 0
+        total_score = 0
         
     def start_game(self, cast):
         """Starts the game using the given cast. Runs the main game loop.
@@ -39,7 +41,12 @@ class Director:
         """
         robot = cast.get_first_actor("robots")
         velocity = self._keyboard_service.get_direction()
-        robot.set_velocity(velocity)        
+        robot.set_velocity(velocity)    
+
+        # # Set the velocity of the gems/rocks
+        # artifact_velocity = 100
+        # for artifact in artifacts:
+        #     artifact.set_velocity(artifact_velocity)
 
     def _do_updates(self, cast):
         """Updates the robot's position and resolves any collisions with artifacts.
@@ -56,20 +63,43 @@ class Director:
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
 
-        score = 0
-        if artifacts:
-         score += 1
+        # Move the objects down
+        for artifact in artifacts:
+            artifact.move_falling_objects(max_y)
+
+        # score = 0
+        # if artifacts:
+        #     score += 1
         for artifact in artifacts:
             if robot.get_position().equals(artifact.get_position()):
+                total_score = robot.get_total_score()
+                worth = artifact.get_scoretype()
+                if worth == "-1":
+                    # score -= 1
+                    total_score -= 1
+                
+                if worth == "1":
+                    score += 1
+                    total_score += 1
+
+                # self.total_score =+ int(worth)
+                print(f"worth: {worth}")
+                print(f"score: {total_score}")
+                print()
+
+                robot.set_total_score(total_score)
+
+
                 # This seems to be where the message is displayed
-                message = artifact.get_message()
-                banner.set_text(message)    
-                # Changing it to be worth in points
-                message = artifact.get_message()
-                print(artifact._chartype)
-                worth = artifact.get_worth()
-                banner.set_text(worth)    
-            return score 
+                # message = artifact.get_message()
+                # banner.set_text(message)    
+                # # Changing it to be worth in points
+                # message = artifact.get_message()
+                # # print(artifact._chartype)
+                # worth = artifact.get_worth()
+                # # print(message)
+                # banner.set_text(worth)    
+            # return score 
             
     def _do_outputs(self, cast):
         """Draws the actors on the screen.

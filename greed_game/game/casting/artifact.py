@@ -37,7 +37,7 @@ class Artifact(Actor):
         Returns:
             int: point value.
         """
-        return self._worth
+        return self.worth
 
     def set_points(self, worth):
         """Gets the artifact's worth in points.
