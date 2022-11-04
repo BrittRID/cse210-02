@@ -48,19 +48,6 @@ class Actor:
 
         return self._total_score
 
-    # def set_chartype(self, chartype):
-    #     """Updates the type to the given one.            
-    #      Args:
-    #         chartype (chartype): The given chartype.
-    #     """
-    #     self._chartype = chartype
-    
-    # def get_chartype(self, chartype):
-    #     """Gets the type.            
-        
-    #     Returns type, rock or gem
-    #     """
-    #     return self._chartype
 
     def get_font_size(self):
         """Gets the actor's font size.
@@ -110,7 +97,6 @@ class Actor:
         x = self._position.get_x()
         y = (self._position.get_y() + 5) % max_y
         self._position = Point(x, y)
-        # print("falling")
 
     def set_color(self, color):
         """Updates the color to the given one.
