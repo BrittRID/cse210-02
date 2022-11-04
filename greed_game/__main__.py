@@ -55,7 +55,9 @@ def main():
     cast.add_actor("robots", robot)
 
     # Set the robot's points
+    # robot.set_total_score(1000)
     robot.set_total_score(0)
+    # print(robot.get_total_score())
     
     # create the artifacts
     # with open(DATA_PATH) as file:
