@@ -55,18 +55,22 @@ class Director:
         max_x = self._video_service.get_width()
         max_y = self._video_service.get_height()
         robot.move_next(max_x, max_y)
-        
+
+        score = 0
+        if artifacts:
+         score += 1
         for artifact in artifacts:
             if robot.get_position().equals(artifact.get_position()):
                 # This seems to be where the message is displayed
-                # message = artifact.get_message()
-                # banner.set_text(message)    
+                message = artifact.get_message()
+                banner.set_text(message)    
                 # Changing it to be worth in points
-                # message = artifact.get_message()
-                # print(artifact._chartype)
+                message = artifact.get_message()
+                print(artifact._chartype)
                 worth = artifact.get_worth()
                 banner.set_text(worth)    
-        
+            return score 
+            
     def _do_outputs(self, cast):
         """Draws the actors on the screen.
         
