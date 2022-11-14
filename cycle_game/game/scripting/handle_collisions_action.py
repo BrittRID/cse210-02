@@ -65,9 +65,12 @@ class HandleCollisionsAction(Action):
         # time.time += 1
         time.add_time(1)
         snake = cast.get_first_actor("snakes")
-        time._len = time._time
-        # if 
-        sn_ln = time._len / 100
+        # time._len = time._time
+        if time._time > 1000:
+            sn_ln = time._len / 100
+        else:
+            sn_ln = 0
+        # sn_ln = time._len / 100
         # sn_ln = math.ceil(time._time / 1000)
         snake.grow_tail(sn_ln)
 
