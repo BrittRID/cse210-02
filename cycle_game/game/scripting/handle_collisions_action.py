@@ -65,14 +65,18 @@ class HandleCollisionsAction(Action):
         # time.time += 1
         time.add_time(1)
         snake = cast.get_first_actor("snakes")
-        # time._len = time._time
-        if time._time > 1000:
-            sn_ln = time._len / 100
-        else:
-            sn_ln = 0
+        time._len = math.ceil(time._time / 1000)
+        print(time._len)
+        if time._len < 2:
+            snake.grow_tail(time._len)
+        # time._len = time._time / 100
+        # if time._len > 10:
+        #     sn_ln = math.ceil(time._len / 100)
+        # else:
+        #     sn_ln = 0
         # sn_ln = time._len / 100
         # sn_ln = math.ceil(time._time / 1000)
-        snake.grow_tail(sn_ln)
+        
 
     
     def _handle_segment_collision(self, cast):
