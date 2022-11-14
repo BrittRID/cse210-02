@@ -22,6 +22,8 @@ class ControlActorsAction(Action):
         self._keyboard_service = keyboard_service
         self._direction = Point(constants.CELL_SIZE, 0)
 
+    # Player 2 needs to move with IKJ
+
     def execute(self, cast, script):
         """Executes the control actors action.
 
