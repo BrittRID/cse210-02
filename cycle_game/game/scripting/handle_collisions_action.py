@@ -1,4 +1,5 @@
 import constants
+import math
 from game.casting.actor import Actor
 from game.scripting.action import Action
 from game.shared.point import Point
@@ -31,9 +32,11 @@ class HandleCollisionsAction(Action):
             # snake and snake collision will likely happen here
             self._handle_segment_collision(cast)
             self._handle_game_over(cast)
+            # Grow the snake
+            self._tail_growth_over_time(cast)
 
     # def _handle_food_collision(self, cast):
-    #     """Updates the score nd moves the food if the snake collides with the food.
+    #     """Updates the score and moves the food if the snake collides with the food.
         
     #     Args:
     #         cast (Cast): The cast of Actors in the game.
@@ -48,6 +51,26 @@ class HandleCollisionsAction(Action):
     #         snake.grow_tail(points)
     #         score.add_points(points)
     #         food.reset()
+
+    # New function that grows the tail over time
+    def _tail_growth_over_time(self, cast):
+        """Updates the length of the snake's tailes over time.
+
+        Args:
+            cast (Cast): The cast of Actors in the game.
+        """
+
+        time = cast.get_first_actor("time")
+        # time = cast.get_first_actor("time")
+        # time.time += 1
+        time.add_time(1)
+        snake = cast.get_first_actor("snakes")
+        time._len = time._time
+        # if 
+        sn_ln = time._len / 100
+        # sn_ln = math.ceil(time._time / 1000)
+        snake.grow_tail(sn_ln)
+
     
     def _handle_segment_collision(self, cast):
         """Sets the game over flag if the snake collides with one of its segments.
