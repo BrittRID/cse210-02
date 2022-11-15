@@ -60,24 +60,14 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
         """
 
-        time = cast.get_first_actor("time")
-        # time = cast.get_first_actor("time")
-        # time.time += 1
-        time.add_time(1)
         snake = cast.get_first_actor("snakes")
-        time._len = math.ceil(time._time / 1000)
-        print(time._len)
-        if time._len < 2:
-            snake.grow_tail(time._len)
-        # time._len = time._time / 100
-        # if time._len > 10:
-        #     sn_ln = math.ceil(time._len / 100)
-        # else:
-        #     sn_ln = 0
-        # sn_ln = time._len / 100
-        # sn_ln = math.ceil(time._time / 1000)
-        
+        time = cast.get_first_actor("time")
+        time.add_time(1)
 
+        if time._time == 10:
+            print("add time")
+            snake.grow_tail(1)
+            time.reset_time()
     
     def _handle_segment_collision(self, cast):
         """Sets the game over flag if the snake collides with one of its segments.

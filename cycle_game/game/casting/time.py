@@ -11,7 +11,6 @@ class Time(Actor):
     def __init__(self):
         super().__init__()
         self._time = 0
-        self._len = 0
         self.add_time(0)
 
     def add_time(self, time):
@@ -20,6 +19,13 @@ class Time(Actor):
         Args:
             time (int): The time to add.
         """
-        # time = time / 100
         self._time += time
-        # self.set_text(f"Score: {self._time}")
+
+    def reset_time(self):
+        """Reset the time.
+        
+        Args:
+            time (int): The time to clear.
+        """
+
+        self._time = 0
