@@ -47,7 +47,6 @@ class Snake(Actor):
             segment.set_text("#")
             segment.set_color(constants.GREEN)
             self._segments.append(segment)
-            print("grow")
 
     def turn_head(self, velocity):
         self._segments[0].set_velocity(velocity)

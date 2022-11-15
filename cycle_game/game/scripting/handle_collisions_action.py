@@ -1,5 +1,4 @@
 import constants
-import math
 from game.casting.actor import Actor
 from game.scripting.action import Action
 from game.shared.point import Point
@@ -27,30 +26,12 @@ class HandleCollisionsAction(Action):
             script (Script): The script of Actions in the game.
         """
         if not self._is_game_over:
-            # No need for food
-            # self._handle_food_collision(cast)
             # snake and snake collision will likely happen here
             self._handle_segment_collision(cast)
             self._handle_game_over(cast)
             # Grow the snake
             self._tail_growth_over_time(cast)
 
-    # def _handle_food_collision(self, cast):
-    #     """Updates the score and moves the food if the snake collides with the food.
-        
-    #     Args:
-    #         cast (Cast): The cast of Actors in the game.
-    #     """
-    #     score = cast.get_first_actor("scores")
-    #     food = cast.get_first_actor("foods")
-    #     snake = cast.get_first_actor("snakes")
-    #     head = snake.get_head()
-
-    #     if head.get_position().equals(food.get_position()):
-    #         points = food.get_points()
-    #         snake.grow_tail(points)
-    #         score.add_points(points)
-    #         food.reset()
 
     # New function that grows the tail over time
     def _tail_growth_over_time(self, cast):
@@ -65,7 +46,6 @@ class HandleCollisionsAction(Action):
         time.add_time(1)
 
         if time._time == 10:
-            print("add time")
             snake.grow_tail(1)
             time.reset_time()
     
@@ -92,7 +72,6 @@ class HandleCollisionsAction(Action):
         if self._is_game_over:
             snake = cast.get_first_actor("snakes")
             segments = snake.get_segments()
-            # food = cast.get_first_actor("foods")
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
@@ -105,4 +84,3 @@ class HandleCollisionsAction(Action):
 
             for segment in segments:
                 segment.set_color(constants.WHITE)
-            # food.set_color(constants.WHITE)
