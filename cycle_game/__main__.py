@@ -19,8 +19,10 @@ def main():
     
     # create the cast
     cast = Cast()
-    cast.add_actor("snakes", Snake())
+    cast.add_actor("snake 1", Snake())
     cast.add_actor("time", Time())
+    cast.add_actor("snake 2", Snake())
+
    
     # start the game
     keyboard_service = KeyboardService()
