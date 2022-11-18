@@ -3,6 +3,7 @@ import constants
 from game.casting.cast import Cast
 from game.casting.time import Time
 from game.casting.snake import Snake
+from game.casting.snake2 import Snake2
 from game.scripting.script import Script
 from game.scripting.control_actors_action import ControlActorsAction
 from game.scripting.move_actors_action import MoveActorsAction
@@ -21,7 +22,7 @@ def main():
     cast = Cast()
     cast.add_actor("snake 1", Snake())
     cast.add_actor("time", Time())
-    cast.add_actor("snake 2", Snake())
+    cast.add_actor("snake 2", Snake2())
 
    
     # start the game

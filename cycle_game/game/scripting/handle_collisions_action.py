@@ -26,11 +26,13 @@ class HandleCollisionsAction(Action):
             script (Script): The script of Actions in the game.
         """
         if not self._is_game_over:
-            # snake and snake collision will likely happen here
+            # snake and snake collision
+            self._handle_snake_collision(cast)
             self._handle_segment_collision(cast)
             self._handle_game_over(cast)
             # Grow the snake
             self._tail_growth_over_time(cast)
+            
 
 
     # New function that grows the tail over time
@@ -41,13 +43,40 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
         """
 
-        snake = cast.get_first_actor("snakes")
+        snake = cast.get_first_actor("snake 1")
+        snake2 = cast.get_first_actor("snake 2")
         time = cast.get_first_actor("time")
         time.add_time(1)
 
         if time._time == 10:
+            snake2.grow_tail(1)
             snake.grow_tail(1)
             time.reset_time()
+
+    def _handle_snake_collision(self, cast):
+        "If the snakes collide the game ends"
+
+        # print("checking")
+        snake = cast.get_first_actor("snake 1")
+        snake2 = cast.get_first_actor("snake 2")
+
+        head = snake.get_segments()[0]
+        segments = snake.get_segments()[1:]
+
+        head2 = snake2.get_segments()[0]
+        segments2 = snake2.get_segments()[1:]
+
+        if head.get_position().equals(head2.get_position()):
+            self._is_game_over = True
+        
+        for segment in segments2:
+            if head.get_position().equals(segment.get_position()):
+            
+                self._is_game_over = True
+        
+        for segment in segments:
+            if head2.get_position().equals(segment.get_position()):
+                self._is_game_over = True
     
     def _handle_segment_collision(self, cast):
         """Sets the game over flag if the snake collides with one of its segments.
@@ -55,12 +84,20 @@ class HandleCollisionsAction(Action):
         Args:
             cast (Cast): The cast of Actors in the game.
         """
-        snake = cast.get_first_actor("snakes")
+        snake = cast.get_first_actor("snake 1")
+        snake2 = cast.get_first_actor("snake 2")
         head = snake.get_segments()[0]
         segments = snake.get_segments()[1:]
+
+        head2 = snake2.get_segments()[0]
+        segments2 = snake2.get_segments()[1:]
         
         for segment in segments:
             if head.get_position().equals(segment.get_position()):
+                self._is_game_over = True
+        
+        for segment in segments2:
+            if head2.get_position().equals(segment.get_position()):
                 self._is_game_over = True
         
     def _handle_game_over(self, cast):
@@ -70,8 +107,10 @@ class HandleCollisionsAction(Action):
             cast (Cast): The cast of Actors in the game.
         """
         if self._is_game_over:
-            snake = cast.get_first_actor("snakes")
+            snake = cast.get_first_actor("snake 1")
+            snake2 = cast.get_first_actor("snake 2")
             segments = snake.get_segments()
+            segments2 = snake2.get_segments()
 
             x = int(constants.MAX_X / 2)
             y = int(constants.MAX_Y / 2)
@@ -83,4 +122,7 @@ class HandleCollisionsAction(Action):
             cast.add_actor("messages", message)
 
             for segment in segments:
+                segment.set_color(constants.WHITE)
+
+            for segment in segments2:
                 segment.set_color(constants.WHITE)
